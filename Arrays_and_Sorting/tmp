@@ -1,0 +1,37 @@
+imprimer, left: 0, right: 6
+1 3 9 8 2 7 5 
+swapping 5 and 8
+pivot: 3, array.length: 7
+imprimer, left: 0, right: 2
+1 3 2 
+swapping 2 and 3
+pivot: 1, array.length: 7
+imprimer, left: 0, right: 0
+1 
+imprimer, left: 2, right: 2
+1 2 3 
+imprimer, left: 4, right: 6
+1 2 3 5 9 7 8 
+swapping 8 and 9
+pivot: 5, array.length: 7
+imprimer, left: 0, right: 4
+1 2 3 5 7 
+pivot: 4, array.length: 7
+imprimer, left: 0, right: 3
+1 2 3 5 
+pivot: 3, array.length: 7
+imprimer, left: 0, right: 2
+1 2 3 
+pivot: 2, array.length: 7
+imprimer, left: 0, right: 1
+1 2 
+imprimer, left: 3, right: 2
+1 2 3 
+imprimer, left: 4, right: 3
+1 2 3 5 
+imprimer, left: 5, right: 4
+1 2 3 5 7 
+imprimer, left: 6, right: 6
+1 2 3 5 7 8 9 
+imprimer, left: 0, right: 54
+1 2 3 5 9 7 8 2 1 2 3 5 9 7 8 5 1 2 3 5 7 8 9 3 1 2 3 5 7 8 9 5 1 2 3 5 7 8 9 7 1 2 3 5 7 8 9 8 1 2 3 5 7 8 9 
