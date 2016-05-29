@@ -17,7 +17,7 @@ class angry_professor {
 
    private static void process(List<Case> cases) {
       for (Case cas : cases) {
-         System.out.println(cas);
+         System.out.println(cas.process());
       }
    }
 
