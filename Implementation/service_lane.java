@@ -1,63 +1,56 @@
-import java.util.Scanner;
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Collections;
+import java.util.*;
 
-class MyList
-{
-  private List<Integer> widths;
-  private List<int[]> tests;
+class service_lane {
+   private static List<Integer> widths = new ArrayList<>();
 
-  public MyList()
-  {
-    widths = new ArrayList<Integer>();
-    tests = new ArrayList<int[]>();
-  }
+   public static void main(String[] args) {
+      process(read());
+   }
 
-  public void read()
-  {
-    Scanner scanner = new Scanner(System.in);
-    int freeway_length = scanner.nextInt();
-    int test_count = scanner.nextInt();
-    for (int i = 0; i < freeway_length; i++)
-      widths.add(scanner.nextInt());
-    for (int i = 0; i < test_count; i++)
-    {
-      int[] test = { scanner.nextInt(), scanner.nextInt() };
-      tests.add(test);
-    }
+   private static List<Case> read() {
+      List<Case> cases = new ArrayList<>();
+      Scanner scanner = new Scanner(System.in);
+      int freewayLength = scanner.nextInt();
+      int caseCount = scanner.nextInt();
+      for (int i = 0; i < freewayLength; i++)
+         widths.add(scanner.nextInt());
+      for (int i = 0; i < caseCount; i++)
+         cases.add(new Case(scanner));
+      scanner.close();
+      return cases;
+   }
 
-    scanner.close();
-  }
+   private static void process(List<Case> cases) {
+      for (Case cas : cases) {
+         // System.out.println(cas);
+         System.out.println(cas.process());
+      }
+   }
 
-  // test[0] is entry, and test[1] is exit. So widths[entry..exit] is the range
-  // in which to find the minimum. This method returns the minimum value of
-  // the range between entry and exit, by taking a sublist of the range
-  // [entry..exit], sorting the sublist, before returning the first entry of
-  // the sorted sublist
-  private int process(int[] test)
-  {
-    List<Integer> sublist = new ArrayList<Integer>(widths.subList(test[0], test[1]+1));
-    Collections.sort(sublist);
-    return sublist.get(0);
-  }
+   // class is static so objects can be instantiated in read() a static method
+   static class Case {
+      int entryIndex, exitIndex;
 
-  public List<Integer> process()
-  {
-    List<Integer> output = new ArrayList<Integer>();
-    for (int[] test : tests)
-      output.add(process(test));
-    return output;
-  }
-}
+      public Case(Scanner scanner) {
+         entryIndex = scanner.nextInt();
+         exitIndex = scanner.nextInt();
+      }
 
-class service_lane
-{
-  public static void main(String[] args)
-  {
-    MyList list = new MyList();
-    list.read();
-    for (Integer answer : list.process())
-      System.out.println(answer);
-  }
+      public int process()
+      {
+         // widths[entryIndex..exitIndex] is the range in which to find the minimum
+         List<Integer> subWidths = widths.subList(entryIndex, exitIndex+1);
+         // make a copy of the range
+         List<Integer> copy = new ArrayList<Integer>(subWidths);
+         // sort the copy
+         Collections.sort(copy);
+         // return the first entry of the sorted copy
+         return copy.get(0);
+      }
+
+      @Override
+      public String toString() {
+         return entryIndex + " " + exitIndex;
+      }
+   }
 }
