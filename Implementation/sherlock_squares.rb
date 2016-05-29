@@ -1,41 +1,39 @@
-# Use instance variable to store square array, which may be efficient enough,
-# since there's only one instantiation of Square
+# version 2: use a static variable
 class Square
-  def initialize
-    @list = []
+  @@list = []
+  def self.initialize
     # square numbers at the ready
-    (1..100000).each do |number|
-      @list << number*number
+    if @@list.empty?
+      (1..100000).each do |number|
+        @@list << number*number
+      end
     end
   end
 
-  # find the smallest square that is greater than or equal the number
-  def equal(number)
-    @list.each_index do |index|
-      # with the list array containing square numbers that are so large, it is
-      # guaranteed that a square will eventually be greater than given number
-      if @list[index] >= number
+  def self.equal(number)
+    initialize
+    @@list.each_index do |index|
+      if @@list[index] >= number
         return index
       end
     end
   end
 
-  # find the smallest square that is greater than the number
-  def greater(number)
-    @list.each_index do |index|
-      if @list[index] > number
+  def self.greater(number)
+    @@list.each_index do |index|
+      if @@list[index] > number
         return index
       end
     end
   end
 
-  # return the number of squares between lower bound and upper bound, inclusive
-  def count(bounds)
-    return greater(bounds[1]) - equal(bounds[0])
+  def self.count(bounds)
+    low = equal(bounds[0])
+    high = greater(bounds[1])
+    return high - low
   end
 end
 
-square = Square.new
-gets.to_i.times do
-  puts(square.count(gets.split.map{|i| i.to_i}))
+gets.strip.to_i.times do
+  puts(Square.count(gets.split(" ").map(&:to_i)))
 end
