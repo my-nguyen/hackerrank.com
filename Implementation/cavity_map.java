@@ -1,59 +1,62 @@
-import java.util.Scanner;
-import java.util.List;
-import java.util.ArrayList;
+import java.util.*;
 
-class MyList
-{
-  private List<String> list;
+class cavity_map {
+   public static void main(String[] args) {
+      process(read());
+   }
 
-  public MyList()
-  {
-    list = new ArrayList<String>();
-  }
+   private static List<Case> read() {
+      List<Case> cases = new ArrayList<>();
+      Scanner scanner = new Scanner(System.in);
+      int caseCount = 1;
+      for (int i = 0; i < caseCount; i++)
+         cases.add(new Case(scanner));
+      scanner.close();
+      return cases;
+   }
 
-  public void read()
-  {
-    Scanner scanner = new Scanner(System.in);
-    // number of lines to read next
-    int size = Integer.parseInt(scanner.nextLine());
-    for (int i = 0; i < size; i++)
-      list.add(scanner.nextLine());
-
-    scanner.close();
-  }
-
-  public void process()
-  {
-    for (int i = 1; i < list.size()-1; i++)
-      for (int j = 1; j < list.size()-1; j++)
-      {
-        // compare character at (i, j) with the surrounding 4 characters
-        char current = list.get(i).charAt(j);
-        if (list.get(i-1).charAt(j) < current && list.get(i+1).charAt(j) < current &&
-            list.get(i).charAt(j-1) < current && list.get(i).charAt(j+1) < current)
-        {
-          // a match is found: need to replace that character with 'X'
-          String cur_string = list.get(i);
-          String new_string = cur_string.substring(0, j) + 'X' + cur_string.substring(j + 1);
-          list.set(i, new_string);
-        }
+   private static void process(List<Case> cases) {
+      for (Case cas : cases) {
+         System.out.print(cas.process());
       }
-  }
+   }
 
-  public void print()
-  {
-    for (String str : list)
-      System.out.println(str);
-  }
-}
+   // class is static so objects can be instantiated in read() a static method
+   static class Case {
+      List<String> map = new ArrayList<>();
 
-class cavity_map
-{
-  public static void main(String[] args)
-  {
-    MyList list = new MyList();
-    list.read();
-    list.process();
-    list.print();
-  }
+      public Case(Scanner scanner) {
+         int mapSize = scanner.nextInt();
+         for (int i = 0; i < mapSize; i++)
+            map.add(scanner.next());
+      }
+
+      public String process()
+      {
+         for (int i = 1; i < map.size()-1; i++) {
+            for (int j = 1; j < map.size()-1; j++) {
+               // compare character at (i, j) with the surrounding 4 characters
+               char depth = map.get(i).charAt(j);
+               if (map.get(i-1).charAt(j) < depth &&
+                   map.get(i+1).charAt(j) < depth &&
+                   map.get(i).charAt(j-1) < depth &&
+                   map.get(i).charAt(j+1) < depth) {
+                  // a match is found: need to replace that character with 'X'
+                  String current = map.get(i);
+                  String replacement = current.substring(0, j) + 'X' + current.substring(j + 1);
+                  map.set(i, replacement);
+               }
+            }
+         }
+         return toString();
+      }
+
+      @Override
+      public String toString() {
+         StringBuilder builder = new StringBuilder();
+         for (String string : map)
+            builder.append(string).append("\n");
+         return builder.toString();
+      }
+   }
 }
