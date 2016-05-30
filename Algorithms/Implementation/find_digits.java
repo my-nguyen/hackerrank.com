@@ -1,7 +1,6 @@
 import java.util.*;
 
-class find_digits
-{
+class find_digits {
    public static void main(String[] args) {
       process(read());
    }
