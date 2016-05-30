@@ -13,23 +13,22 @@ Output Format
 The maximal value as mentioned in the problem statement.
 
 Sample Input#00
-
 1
 10
+
 Sample Output#00
-
 15
-Sample Input#01
 
+Sample Input#01
 10
 15
+
 Sample Output#01
-
 7
-Explanation
 
+Explanation
 In the second sample let's say L=10, R=15, then all pairs which comply to above
-condition are 
+condition are
 10⊕10=0
 10⊕11=1
 10⊕12=6
