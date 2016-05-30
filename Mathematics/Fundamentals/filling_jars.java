@@ -1,68 +1,62 @@
-import java.util.Scanner;
-import java.util.List;
-import java.util.ArrayList;
+import java.util.*;
 
-class MyList
-{
-  // must use Long instead of Integer to represent the numbers, since the
-  // operations, including the range (index_b - index_a), the number of candies,
-  // and the multiplication all could push the result over the limits of an
-  // integer
-  private List<Long[]> data;
-  private int jar_count;
+class filling_jars {
+   public static void main(String[] args) {
+      process(read());
+   }
 
-  public MyList()
-  {
-    data = new ArrayList<Long[]>();
-    jar_count = 0;
-  }
+   private static List<Case> read() {
+      List<Case> cases = new ArrayList<>();
+      Scanner scanner = new Scanner(System.in);
+      int caseCount = 1;
+      for (int i = 0; i < caseCount; i++)
+         cases.add(new Case(scanner));
+      scanner.close();
+      return cases;
+   }
 
-  public void read()
-  {
-    Scanner scanner = new Scanner(System.in);
-    // number of integers to fetch next
-    jar_count = scanner.nextInt();
-    int operation_count = scanner.nextInt();
-    // read all the integers
-    for (int i = 0; i < operation_count; i++)
-    {
-      Long[] line = new Long[3];
-      for (int j = 0; j < 3; j++)
-        line[j] = scanner.nextLong();
-      data.add(line);
-    }
+   private static void process(List<Case> cases) {
+      for (Case cas : cases) {
+         System.out.println(cas.process());
+      }
+   }
 
-    scanner.close();
-  }
+   // class is static so objects can be instantiated in read() a static method
+   static class Case {
+      // must use Long instead of Integer to represent the numbers, since the
+      // operations, including the range (index_b - index_a), the number of
+      // candies, and the multiplication all could push the result over the
+      // limits of an integer
+      int jarCount;
+      long[] lowerBounds, upperBounds, candyCounts;
 
-  public long process()
-  {
-    long sum = 0;
-    for (Long[] operation : data)
-      // operation[1]-operation[0]+1: refers to all array elements from lower
-      // bound to upper bound, inclusive
-      // operation[2] is the number of candies to fill into those array elements
-      // So at each iteration, the number of candies filled in all array elements
-      // from lower bound to upper bound inclusive is added to the total
-      // And at the end of the loop, the sum will be all candies filled in all
-      // ranges (lower-upper) of all operations
-      // Because all the numbers, including the lower bound, the upper bound,
-      // the range between lower and upper, the number of candies, the
-      // multiplied value, and the sum total all could be too big for an
-      // integer to hold, a Long was used instead.
-      sum += (operation[1]-operation[0]+1) * operation[2];
+      public Case(Scanner scanner) {
+         jarCount = scanner.nextInt();
+         int operationCount = scanner.nextInt();
+         lowerBounds = new long[operationCount];
+         upperBounds = new long[operationCount];
+         candyCounts = new long[operationCount];
+         for (int i = 0; i < operationCount; i++) {
+            lowerBounds[i] = scanner.nextLong();
+            upperBounds[i] = scanner.nextLong();
+            candyCounts[i] = scanner.nextLong();
+         }
+      }
 
-    // return the average candies per jar
-    return sum / jar_count;
-  }
-}
+      public long process()
+      {
+         long sum = 0;
+         for (int i = 0; i < lowerBounds.length; i++)
+            // upperBounds[i]-lowerBounds[i]+1 refers to all array elements from
+            // lower bound to upper bound, inclusive. at each iteration, the
+            // number of candies filled in all array elements from lower bound
+            // to upper bound inclusive is added to the total. and at the end of
+            // the loop, the sum will be all candies filled in all ranges
+            // (lower-upper) of all operations
+            sum += (upperBounds[i]-lowerBounds[i]+1) * candyCounts[i];
 
-class filling_jars
-{
-  public static void main(String[] args)
-  {
-    MyList list = new MyList();
-    list.read();
-    System.out.println(list.process());
-  }
+         // return the average candies per jar
+         return sum / jarCount;
+      }
+   }
 }
