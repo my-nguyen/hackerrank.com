@@ -1,6 +1,6 @@
 import java.util.*;
 
-class sherlock_squares {
+class sherlock_and_squares {
    public static void main(String[] args) {
       process(read());
    }

@@ -1,11 +1,6 @@
-import java.util.Scanner;
-import java.util.Map;
-import java.util.HashMap;
-import java.util.List;
-import java.util.ArrayList;
+import java.*;
 
-class utopian_tree
-{
+class utopian_tree {
    public static void main(String[] args) {
       process(read());
    }
