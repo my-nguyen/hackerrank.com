@@ -1,0 +1,77 @@
+Jamal works for a food delivery company that labels each food with a positive
+integer from 1 to m. At the beginning of each day, he receives q food delivery
+requests. Each request is in the form foodi personk, meaning he must buy foodi
+from one of the restaurants that make it and deliver it to personk. He must
+deliver each request in the same order in which he received it.
+
+Jamal's city is organized like a complete binary tree where personk lives at
+intersection k. As a reminder, a complete binary tree is a binary tree in which
+every level, except possibly the last, is completely filled and all the nodes
+are as far left as possible:
+
+The city has a restaurant at each intersection, and traveling from an
+intersection to an adjacent intersection takes 1 minute. Jamal starts his
+workday at intersection and can't hold more than one food item at a time.
+
+Given the layout of the city and Jamal's sequence of delivery requests,
+calculate the minimum time it will take him to deliver all the requests in the
+order he received them.
+
+Input Format
+* The first line contains three space-separated positive integers describing the
+  respective values of n (the number of intersections), m (the number of types
+  of foods), and q (the number of delivery requests).
+* Each line i of the m subsequent lines (where 1 <= i <= m) contains a maximum
+  of 11 space-separated positive integers. The first integer denotes the number
+  of restaurants that make food type i. The remaining numbers on the line denote
+  the restaurants that make the food type i.
+* Each line j of the q subsequent lines contains a food order request in the
+  form foodi personk, where foodi is the type of food being ordered and personk
+  is the person it must be delivered to.
+
+Constraints
+* 1 <= n <= 10^5
+* 1 <= m <= 10^4
+* 1 <= q <= 10^5
+* Each food is made by a maximum of restaurants.
+
+Output Format
+Print the amount of time (in minutes) it takes for Jamal to deliver all q
+food requests.
+
+Sample Input
+5 5 6
+3 1 4 5
+1 3
+3 2 3 5
+4 1 3 4 5
+3 1 2 5
+5 3
+3 5
+3 2
+2 5
+2 1
+3 3
+
+Sample Output
+15
+
+Explanation
+We have m=5 foods:
+1. Food type 1 is available from the restaurants at intersections 1, 4, and 5.
+2. Food type 2 is available from the restaurant at intersection 3.
+3. Food type 3 is available from the restaurants at intersections 2, 3, and 5.
+4. Food type 4 is available from the restaurants at intersections 1, 3, 4, and 5
+5. Food type 5 is available from the restaurants at intersections 1, 2, and 5.
+
+Jamal has the following q=6 delivery requests:
+1. Buy food type 5 and deliver it to intersection 3.
+2. Buy food type 3 and deliver it to intersection 5.
+3. Buy food type 3 and deliver it to intersection 2.
+4. Buy food type 2 and deliver it to intersection 5.
+5. Buy food type 2 and deliver it to intersection 1.
+6. Buy food type 3 and deliver it to intersection 3.
+
+Jamal's path is 1->3->2->5->2->3->5->3->1->3, where bolded intersections are
+intersections in which Jamal completed a delivery. The length of this path is
+1+2+1+1+2+3+3+1+1=15

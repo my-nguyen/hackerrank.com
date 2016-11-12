@@ -1,0 +1,69 @@
+Victor loves building structures using popsicle sticks. Each time he goes to
+Walmart, he purchases n identical popsicle sticks. When he gets home, he places
+the sticks on a sheet of paper in such a way that they form mountains like the
+ones in the following diagram:
+
+               /\         /\/\
+   /\         /  \       /    \
+2 sticks    4 sticks    6 sticks
+
+Victor builds mountains according to the following rules:
+* The two bottom endpoints (i.e., the base) of the mountain always touch the
+  ground.
+* None of the intermediate sticks between the mountain's left and right
+  endpoints can be below ground level.
+* Sticks are only placed at or angles with the ground.
+* No stick is ever placed inside the walls of a mountain.
+
+The diagram below demonstrates structures that violate these rules and are not allowed:
+
+ /\/\/\     /\  /\/\     /_\         /\
+/             \/        /   \       /\ \
+ Rule 1      Rule 2     Rule 3      Rule 4
+
+Victor is curious to know how many different types of mountains he can build
+following the rules above; two mountains are considered to be different if they
+look different. Given the value of n for t trips to Walmart, print the number of
+mountains he can build using up to sticks on a new line. As this value can be
+quite large, print each answer modulo 10^9 + 7.
+
+Input Format
+* The first line contains an integer, t, denoting the number of trips to Walmart.
+* Each of the t subsequent lines contains an integer, n, denoting the number of
+  sticks Victor purchased during that trip to Walmart.
+
+Constraints
+* It is guaranteed that is always an even number.
+
+Output Format
+For each trip to Walmart, print the number of structures Victor can build using
+up to n sticks, modulo 10^9 + 7, on a new line.
+
+Sample Input
+3
+2
+6
+20
+
+Sample Output
+1
+8
+23713
+
+Explanation
+
+Victor makes trips to Walmart to puchase popsicle sticks:
+
+1. During the first trip, Victor can build one mountain with his sticks:
+/\
+Thus, we print 1 on a new line.
+
+2. During the second trip, Victor can build eight mountains with his sticks:
+                     /\          /\/\
+/\      /\/\        /  \        /    \
+
+                       /\
+ /\          /\       /  \
+/  \/\    /\/  \     /    \      /\/\/\
+
+Thus, we print 8 on a new line.

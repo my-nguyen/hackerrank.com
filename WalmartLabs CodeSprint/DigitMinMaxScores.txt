@@ -1,0 +1,30 @@
+A digit is a min-digit in a number if it is less than both its adjacent digits.
+Similarly, a digit is a max-digit in a number if it is greater than both its
+adjacent digits. The min-max-score of number is the total number of min-digits
+and max-digits (ignoring the first and last digit) contained in it. Given a and
+b, find the sum of the min-max-scores of all numbers between a and b (including
+a and b).
+
+Input Format
+Two lines consisting of two integers a and b.
+
+Constraints
+1 <= a <= b <= 10^12
+
+Output Format
+Sum(min-max-score of all numbers between a and b)
+
+Sample Input
+100
+105
+
+Sample Output
+5
+
+Explanation
+For each digit in the number there must exist a left and right adjacent digit.
+
+The middle digit 0 in 100 is neither a min digit nor max digit because its right
+adjacent digit is not greater than 0. The numbers 101 through 105 the 0 in the
+middle i.e; the ten's place is less than both it's left and right adjacent
+digit. This gives us 5 min-digits. So the answer is 5.

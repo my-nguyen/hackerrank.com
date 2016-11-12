@@ -1,0 +1,68 @@
+Emma has an old-fashioned camera with frames of film in it. Emma wants to go
+hiking with friends and, during the hike, take exactly one selfie with every
+possible combination of her friends.
+
+Given n and x, determine whether or not Emma has enough frames of film in her
+camera to take exactly one photo with every possible combination of her friends.
+If yes, print the number of extra frames of film she has after taking all the
+photos; if no, print the number of additional frames of film she needs to
+accomplish this task.
+
+Input Format
+The first line contains an integer, , denoting the number of Emma's friends
+going on the hike.
+The second line contains an integer, , denoting the number of frames of film in
+her camera.
+
+Constraints
+* 1 <= n <= 10
+* 1 <= x <= 1024
+
+Output Format
+Print a single integer denoting the following:
+* If Emma has enough film to get a photo of herself with all possible
+combinations of her friends, print the number of extra (left over) frames of
+film she has in her camera after taking all the photos.
+* If Emma does not have enough film, print the number of additional frames of
+film she will need to get a photo of herself with all possible combinations of
+her friends.
+
+Sample Input 0
+3
+10
+
+Sample Output 0
+3
+
+Explanation 0
+Let's say Emma's friends are Alice, Bob, and Dan. Emma can take photos with the
+following combinations of friends:
+Emma - Alice - Bob - Dan
+Emma - Alice - Bob
+Emma - Alice - Dan
+Emma - Bob - Dan
+Emma - Alice
+Emma - Bob
+Emma - Dan
+
+
+Because there are 7 combinations of people and Emma has 10 frames of film in her
+camera, she will have frames of film left over. Thus, we print 3 as our answer.
+
+Sample Input 1
+2
+1
+
+Sample Output 1
+2
+
+Explanation 1
+Let's say Emma's friends are Alice and Bob. Emma can take photos with the
+following combinations of friends:
+Emma - Alice
+Emma - Bob
+Emma - Alice - Bob
+
+Because there are 3 combinations of people but Emma only has 1 frame of film in
+her camera, she will need 2 additional frames of film to take a photo with all
+combinations of her friends. Thus, we print 2 as our answer.
